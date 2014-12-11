@@ -3,6 +3,7 @@ var express = require('express')
   , crypto  = require('crypto')
   , http    = require('http')
   , winston = require('winston')
+  , easyrtc = require('easyrtc')
   , fs      = require('fs');
 
 var app = express();
