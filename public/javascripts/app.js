@@ -6,7 +6,7 @@ $(function () {
   var $WS;
 
   if (ENV === 'dev') {
-    $URL = 'http://localhost:3000';
+    $URL = 'http://107.155.108.10:3000';
     $WS = $URL;
   } else if (ENV === 'openshift') {
     $URL = 'http://www.retichess.com';
