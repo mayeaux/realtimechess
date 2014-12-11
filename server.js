@@ -8,7 +8,7 @@ var express = require('express')
 var app = express();
 
 app.configure(function() {
-  app.set('ipaddress', process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1');
+  app.set('ipaddress', process.env.OPENSHIFT_NODEJS_IP || '107.155.108.10');
   app.set('port', process.env.OPENSHIFT_NODEJS_PORT || 3000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
