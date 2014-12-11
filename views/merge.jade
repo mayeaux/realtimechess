@@ -108,29 +108,6 @@ html
 
     #container_wrapper.clearfix
       #container.clearfix
-        #demoContainer
-          #connectControls
-            #iam Not yet connected...
-            |                         
-            br
-            |                         
-            strong Connected users:
-            |                         
-            #otherClients
-          |                     
-          #videos
-            video#selfVideo.easyrtcMirror(autoplay='autoplay', muted='muted', volume='0')
-            |                         
-            div(style='position:relative;float:left;')
-              video#callerVideo(autoplay='autoplay')
-            // each caller video needs to be in it's own div so it's close button can be positioned correctly
-        // hide
-        br(style='clear:both;')
-        |                 
-        hr
-
-
-
         header.clearfix
           ul#clock
             li.white
@@ -383,6 +360,26 @@ html
           span.feedback.whitefeedback
             span.feedback-move White to move.
             span.feedback-status
+
+        #demoContainer
+          #connectControls
+            #iam Not yet connected...
+            |                         
+            br
+            |                         
+            strong Connected users:
+            |                         
+            #otherClients
+          |                     
+          #videos
+            div
+              video#callerVideo(autoplay='autoplay')
+            video#selfVideo.easyrtcMirror(autoplay='autoplay', muted='muted', volume='0')
+            |                         
+
+        br(style='clear:both;')
+        |                 
+        hr
         
 
     script(type='text/javascript', src='/javascripts/jquery.js')

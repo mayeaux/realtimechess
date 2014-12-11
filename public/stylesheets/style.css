@@ -228,7 +228,8 @@ span#game-type {
 #container {
   width: 100%;
   min-height: 600px;
-  float: left; }
+  float: left;
+  margin-left: -35px; }
 
 #form {
   width: 100%;
@@ -727,9 +728,11 @@ span.promotion {
 }
 
 #callerVideo {
-    height:450px;
-    width:600px;
+    height:420px;
+    width:559px;
     border:1px solid gray;
-    margin-left:10px;
     float:right;
+    position: absolute;
+    margin-left:797px;
+    margin-top:-564px;
 }
