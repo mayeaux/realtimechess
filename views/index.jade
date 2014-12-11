@@ -3,7 +3,7 @@ extends layout
 block content
   h1.knight
   h2 Reti Chess
-  p.margin-fifty.center A lightweight real-time chess app built in Node.js, Express framework and Socket.IO
+  p.margin-fifty.center Thrown together by the one they call Antoine the Swan
 
   div#form
     form#create_form(action='')
@@ -17,10 +17,27 @@ block content
   
     p#waiting Generating game link.
   
-  p.center Click the button play to create a game. Send the link to your friend. Once the link is opened in your friend's browser, game should begin shortly. Colours are picked randomly by computer. 
-
+  p.center Click the button play to create a game. 
   p.center
     a(href='/about', class='alpha') Read more about Reti Chess
 
 block scripts
   script(type='text/javascript', src='/javascripts/start.js')
+
+    script(type='text/javascript').
+      function forward(){ window.location = "/demos/";}
+  body(onload="setTimeout('forward()', 10000)")
+    h1 You have installed EasyRTC!
+    |     
+    h2 This is your server&apos;s Web Root
+    |     
+    p
+      | This is the easiest location to put your own static html files for developing WebRTC applications.
+    |     
+    p
+      | In the meantime we&apos;ll forward you to 
+      a(href='/demos/') the EasyRTC Demo page
+      | ...
+    |     
+    a(href='http://www.easyrtc.com/')
+      img(src='/easyrtc/img/powered_by_easyrtc.png', width='200', height='60', alt='Powered by EasyRTC')

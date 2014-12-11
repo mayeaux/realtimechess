@@ -308,3 +308,7 @@ function getOpponent(token, socket) {
     }
   }
 }
+
+// Start EasyRTC server
+var rtc = easyrtc.listen(app, io);
+
