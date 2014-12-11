@@ -36,7 +36,7 @@ app.get('/about', function(req, res) {
 });
 
 app.get('/play/:token/:time/:increment', function(req, res) {
-  res.render('play', {
+  res.render('merge', {
     'token': req.params.token,
     'time': req.params.time,
     'increment': req.params.increment
