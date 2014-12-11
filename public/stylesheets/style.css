@@ -223,13 +223,11 @@ span#game-type {
   width: 100%;
   height: auto;
   padding: 1em 2em;
-  margin: 0 auto;
   clear: both; }
 
 #container {
   width: 100%;
   min-height: 600px;
-  margin-left: 0px 0px 20px 0px;
   float: left; }
 
 #form {
