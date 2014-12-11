@@ -704,3 +704,32 @@ span.promotion {
           width: 57px;
           height: 57px;
           font-size: 3.5rem; } }
+
+#demoContainer {
+    position:relative;
+}
+#connectControls {
+    float:right;
+    width:100px;
+    text-align:center;
+    height:40px;
+}
+#otherClients {
+    height:200px;
+    overflow-y:scroll;
+}
+#selfVideo {
+    height:225px;
+    width:300px;
+    float:right;
+    border:1px solid gray;
+    margin-left:10px;
+}
+
+#callerVideo {
+    height:450px;
+    width:600px;
+    border:1px solid gray;
+    margin-left:10px;
+    float:right;
+}

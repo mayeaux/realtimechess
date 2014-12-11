@@ -12,7 +12,99 @@ html
     meta(name='viewport', content='width=device-width, initial-scale=1')
     link(rel='shortcut icon', href='/images/logo.png')
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet')
+      #demoContainer {
+          position:relative;
+      }
+      #connectControls {
+          float:right;
+          width:100px;
+          text-align:center;
+          height:40px;
+      }
+      #otherClients {
+          height:200px;
+          overflow-y:scroll;
+      }
+      #selfVideo {
+          height:225px;
+          width:300px;
+          float:right;
+          border:1px solid gray;
+          margin-left:10px;
+      }
+
+      #callerVideo {
+          height:450px;
+          width:600px;
+          border:1px solid gray;
+          margin-left:10px;
+          float:right;
+      }
+    script(type='text/javascript', src='js/prettify/jquery.min.js')
+    script(type='text/javascript', src='js/prettify/loadAndFilter.js')
+    script(type='text/javascript', src='js/prettify/prettify.js')
+
     script(type='text/javascript', src='/socket.io/socket.io.js')
+    script(src='/socket.io/socket.io.js')
+    script(type='text/javascript', src='/easyrtc/easyrtc.js')
+    script(type='text/javascript')
+      var selfEasyrtcid = "";
+
+
+      function connect() {
+          easyrtc.setVideoDims(640,480);
+          easyrtc.setRoomOccupantListener(convertListToButtons);
+          easyrtc.easyApp("easyrtc.audioVideoSimple", "selfVideo", ["callerVideo"], loginSuccess, loginFailure);
+       }
+
+
+      function clearConnectList() {
+          var otherClientDiv = document.getElementById('otherClients');
+          while (otherClientDiv.hasChildNodes()) {
+              otherClientDiv.removeChild(otherClientDiv.lastChild);
+          }
+      }
+
+
+      function convertListToButtons (roomName, data, isPrimary) {
+          clearConnectList();
+          var otherClientDiv = document.getElementById('otherClients');
+          for(var easyrtcid in data) {
+              var button = document.createElement('button');
+              button.onclick = function(easyrtcid) {
+                  return function() {
+                      performCall(easyrtcid);
+                  };
+              }(easyrtcid);
+
+              var label = document.createTextNode(easyrtc.idToName(easyrtcid));
+              button.appendChild(label);
+              otherClientDiv.appendChild(button);
+          }
+      }
+
+
+      function performCall(otherEasyrtcid) {
+          easyrtc.hangupAll();
+
+          var successCB = function() {};
+          var failureCB = function() {};
+          easyrtc.call(otherEasyrtcid, successCB, failureCB);
+      }
+
+
+      function loginSuccess(easyrtcid) {
+          selfEasyrtcid = easyrtcid;
+          document.getElementById("iam").innerHTML = "I am " + easyrtc.cleanId(easyrtcid);
+      }
+
+
+      function loginFailure(errorCode, message) {
+          easyrtc.showError(errorCode, message);
+      }
+
+
     script(type='text/javascript')
       $token = '#{token}';
       $time = #{time};
@@ -20,7 +112,7 @@ html
     link(href='http://fonts.googleapis.com/css?family=Cherry+Swash|Open+Sans:400,600', rel='stylesheet', type='text/css')
     //if IE
       script(src='http://html5shiv.googlecode.com/svn/trunk/html5.js')
-  body
+  body(onload="connect();")
     #modal-mask
       p
         strong Esc: 
@@ -45,6 +137,29 @@ html
 
     #container_wrapper.clearfix
       #container.clearfix
+        #demoContainer
+          #connectControls
+            #iam Not yet connected...
+            |                         
+            br
+            |                         
+            strong Connected users:
+            |                         
+            #otherClients
+          |                     
+          #videos
+            video#selfVideo.easyrtcMirror(autoplay='autoplay', muted='muted', volume='0')
+            |                         
+            div(style='position:relative;float:left;')
+              video#callerVideo(autoplay='autoplay')
+            // each caller video needs to be in it's own div so it's close button can be positioned correctly
+        // hide
+        br(style='clear:both;')
+        |                 
+        hr
+
+
+
         header.clearfix
           ul#clock
             li.white
