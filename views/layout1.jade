@@ -1,0 +1,59 @@
+layout1.jadedoctype 5
+html
+  head
+    - if (typeof(title) !== 'undefined')
+      title #{title} | Reti Chess
+    - else
+      title Reti Chess
+    meta(charset='utf-8')
+    meta(name='robots', content='index, follow')
+    meta(itemprop='name=Reti Chess')
+    meta(name='description', content='Reti Chess is a lightweight real-time chess app built in Node.js with use of Express framework and Socket.IO')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='shortcut icon', href='/images/logo.png')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(type='text/javascript', src='/socket.io/socket.io.js')
+    block head
+    link(href='http://fonts.googleapis.com/css?family=Cherry+Swash|Open+Sans:400,600', rel='stylesheet', type='text/css')
+    //if IE
+      script(src='http://html5shiv.googlecode.com/svn/trunk/html5.js')
+  body
+    #modal-mask
+      p
+        strong Esc: 
+        |  OK
+        br
+        strong Enter: 
+        |  OK
+      #modal-window
+        p#modal-message Message.
+        a#modal-ok.button(href='#') OK
+    #offer-mask
+      p
+        strong Esc: 
+        |  Decline
+        br
+        strong Enter: 
+        |  Accept
+      #offer-window
+        p#offer-message Offer.
+        a#offer-accept.button(href='#') Accept
+        a#offer-decline.button.button--red(href='#') Decline
+
+    #container_wrapper.clearfix
+      #container.clearfix
+        block content
+        
+    footer
+      #footer.clearfix
+        p.center HELLO DOES THIS WORK?
+          a(href='http://opensource.org/licenses/MIT')  the MIT License (MIT)
+          . Fork me on 
+          a(href='http://github.com/romanmatiasko/reti-chess')  Github
+          .
+
+    script(type='text/javascript', src='/javascripts/jquery.js')
+    script(type='text/javascript', src='/javascripts/jquery.stickyFooter.js')
+    script(type='text/javascript', src='/javascripts/chess.js')
+    script(type='text/javascript', src='/javascripts/app.js')
+    block scripts
