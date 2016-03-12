@@ -11,7 +11,7 @@ var app = express();
 app.configure(function() {
   console.log(process.env.PORT)
   console.log(process.env)
-  app.set('ipaddress', process.env.HEROKU_IP || '127.0.0.1');
+  // app.set('ipaddress', process.env.HEROKU_IP || '127.0.0.1');
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
