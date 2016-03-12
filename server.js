@@ -59,9 +59,9 @@ app.get('/logs', function(req, res) {
 
 console.log()
 
-var server = http.createServer(app).listen(app.get('port'), function() {
-  console.log("Express server listening on port " + app.get('port'));
-});
+var server = http.createServer(app)
+
+var io = require('socket.io').listen(server, {log: true});
 
 var games = {};
 var timer;
@@ -82,7 +82,6 @@ winston.exitOnError = false;
 /**
  * Sockets
  */
-var io = require('socket.io').listen(server, {log: true});
 
 // io.configure(function () {
 //   io.set("transports", ["xhr-polling"]);
@@ -322,4 +321,7 @@ function getOpponent(token, socket) {
 
 // Start EasyRTC server
 var rtc = easyrtc.listen(app, io);
+
+server.listen(process.env.PORT || 3000);
+
 
