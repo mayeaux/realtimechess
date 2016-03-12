@@ -1,7 +1,7 @@
 var $URL, $socket;
   
 $(function () {
-  //var ENV = 'openshift';
+  var ENV = 'heroku';
   var ENV = 'dev';
   var $WS;
 
