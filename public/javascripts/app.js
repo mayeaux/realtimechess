@@ -13,4 +13,6 @@ $(function () {
   }
 
   $socket = io.connect($WS);
+
+  console.log(myVar)
 });

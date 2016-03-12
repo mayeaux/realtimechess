@@ -30,7 +30,9 @@ app.configure('development', function() {
 });
 
 app.get('/', function(req, res) {
-  res.render('index');
+  res.render('index', {
+        myVar: 'My Data'
+  });
 });
 
 app.get('/about', function(req, res) {
@@ -80,13 +82,18 @@ winston.exitOnError = false;
 /**
  * Sockets
  */
-var io = require('socket.io').listen(server, {log: false});
+var io = require('socket.io').listen(server, {log: true});
 
-if (process.env.OPENSHIFT_NODEJS_IP) {
-  io.configure(function(){
-    io.set('transports', ['websocket']);
-  });
-}
+io.configure(function () {
+  io.set("transports", ["xhr-polling"]);
+  io.set("polling duration", 10);
+});
+
+// if (process.env.OPENSHIFT_NODEJS_IP) {
+//   io.configure(function(){
+//     io.set('transports', ['websocket']);
+//   });
+// }
 
 io.sockets.on('connection', function (socket) {
   
