@@ -2,7 +2,6 @@ var $URL, $socket;
   
 $(function () {
   var ENV = 'heroku';
-  var ENV = 'dev';
   var $WS;
 
   if (ENV === 'dev') {
