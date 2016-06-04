@@ -11,9 +11,11 @@ $(function (data) {
     $URL = 'http://localhost:' + 3000;
     $WS = $URL;
   } else if (ENV === 'production') {
-    $URL = 'http://real-time-chess.herokuapp.com:' + 3000;
+    console.log('hello');
+    $URL = 'https://real-time-chess.herokuapp.com'  ;
+    console.log($URL)
     $WS = $URL;
   }
 
-  $socket = io.connect($WS);
+  $socket = io.connect();
 });

@@ -352,6 +352,6 @@ var rtc = easyrtc.listen(app, io);
 
 server.listen(process.env.PORT);
 
-console.log(process.env.PORT);
+console.log("Listening on port" + process.env.PORT);
 
 });
