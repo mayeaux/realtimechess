@@ -12,7 +12,7 @@ var play = `var $URL, $socket;
 
 $(function (data) {
 
-  var ENV = ${process.env.NODE_ENV};
+  var ENV = '${process.env.NODE_ENV}';
   var $WS;
 
   var data = 5000;
