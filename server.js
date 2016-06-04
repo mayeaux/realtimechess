@@ -21,11 +21,13 @@ $(function (data) {
     $URL = 'http://localhost:' + ${process.env.PORT};
     $WS = $URL;
   } else if (ENV === 'production') {
+    console.log('hello');
     $URL = 'ws://real-time-chess.herokuapp.com:' + ${process.env.PORT};
+    console.log($URL)
     $WS = $URL;
   }
 
-  $socket = io.connect($WS);
+  $socket = io.connect();
 });`
 
 fs.writeFile("./public/javascripts/app.js", play, function(err) {
