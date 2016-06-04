@@ -8,9 +8,11 @@ var express = require('express')
 
 var app = express();
 
+console.log(process.env);
+
 app.configure(function() {
-  app.set('ipaddress', process.env.HEROKU_IP || '127.0.0.1');
-  app.set('port', process.env.HEROKU_IP || 3000);
+  app.set('ipaddress', process.env.IP || '127.0.0.1');
+  app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.use(express.favicon());
@@ -60,7 +62,7 @@ var server = http.createServer(app).listen(app.get('port'), app.get('ipaddress')
 var games = {};
 var timer;
 
-/** 
+/**
  * Winston logger
  */
 winston.add(winston.transports.File, {
@@ -85,7 +87,7 @@ if (process.env.OPENSHIFT_NODEJS_IP) {
 }
 
 io.sockets.on('connection', function (socket) {
-  
+
   socket.on('start', function (data) {
     var token;
     var b = new Buffer(Math.random() + new Date().getTime() + socket.id);
@@ -194,7 +196,7 @@ io.sockets.on('connection', function (socket) {
 
   socket.on('rematch-offer', function (data) {
     var opponent;
-    
+
     if (data.token in games) {
       opponent = getOpponent(data.token, socket);
       if (opponent) {
