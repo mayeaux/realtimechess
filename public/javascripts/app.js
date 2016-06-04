@@ -26,7 +26,7 @@ $(function () {
     var $WS;
 
     if (ENV === 'dev') {
-      $URL = 'https://real-time-chess.herokuapp.com:' + data;
+      $URL = 'http://real-time-chess.herokuapp.com:' + data;
       // $URL = 'https://localhost:' + data;
       $WS = $URL;
     } else if (ENV === 'heroku') {
