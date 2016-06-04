@@ -22,7 +22,7 @@ $(function (data) {
     $WS = $URL;
   } else if (ENV === 'production') {
     console.log('hello');
-    $URL = 'https://real-time-chess.herokuapp.com'  ;
+    $URL = 'https://realtimechess.com'  ;
     console.log($URL)
     $WS = $URL;
   }
@@ -121,7 +121,7 @@ if (process.env.OPENSHIFT_NODEJS_IP) {
 }
 
 io.sockets.on('connection', function (socket) {
-  
+
   socket.on('start', function (data) {
     var token;
     var b = new Buffer(Math.random() + new Date().getTime() + socket.id);
