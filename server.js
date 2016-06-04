@@ -21,7 +21,7 @@ $(function (data) {
     $URL = 'http://localhost:' + ${process.env.PORT};
     $WS = $URL;
   } else if (ENV === 'production') {
-    $URL = 'http://real-time-chess:' + ${process.env.PORT};
+    $URL = 'https://real-time-chess:' + ${process.env.PORT};
     $WS = $URL;
   }
 

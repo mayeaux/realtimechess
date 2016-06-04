@@ -2,7 +2,7 @@ var $URL, $socket;
 
 $(function (data) {
 
-  var ENV = development;
+  var ENV = 'development';
   var $WS;
 
   var data = 5000;
