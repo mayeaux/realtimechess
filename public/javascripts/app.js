@@ -1,8 +1,7 @@
 var $URL, $socket;
   
 $(function () {
-  //var ENV = 'openshift';
-  var ENV = 'dev';
+  var ENV = 'heroku';
   var $WS;
 
   if (ENV === 'dev') {
@@ -14,4 +13,6 @@ $(function () {
   }
 
   $socket = io.connect($WS);
+
+  console.log(myVar)
 });

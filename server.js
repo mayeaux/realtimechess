@@ -9,8 +9,10 @@ var express = require('express')
 var app = express();
 
 app.configure(function() {
-  app.set('ipaddress', process.env.HEROKU_IP || '127.0.0.1');
-  app.set('port', process.env.HEROKU_IP || 3000);
+  console.log(process.env.PORT)
+  console.log(process.env)
+  // app.set('ipaddress', process.env.HEROKU_IP || '127.0.0.1');
+  app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.use(express.favicon());
@@ -28,7 +30,9 @@ app.configure('development', function() {
 });
 
 app.get('/', function(req, res) {
-  res.render('index');
+  res.render('index', {
+        myVar: 'My Data'
+  });
 });
 
 app.get('/about', function(req, res) {
@@ -53,9 +57,11 @@ app.get('/logs', function(req, res) {
   });
 });
 
-var server = http.createServer(app).listen(app.get('port'), app.get('ipaddress'), function() {
-  console.log("Express server listening on port " + app.get('port'));
-});
+console.log()
+
+var server = http.createServer(app)
+
+var io = require('socket.io').listen(server, {log: true});
 
 var games = {};
 var timer;
@@ -76,13 +82,17 @@ winston.exitOnError = false;
 /**
  * Sockets
  */
-var io = require('socket.io').listen(server, {log: false});
 
-if (process.env.OPENSHIFT_NODEJS_IP) {
-  io.configure(function(){
-    io.set('transports', ['websocket']);
-  });
-}
+// io.configure(function () {
+//   io.set("transports", ["xhr-polling"]);
+//   io.set("polling duration", 10);
+// });
+
+// if (process.env.OPENSHIFT_NODEJS_IP) {
+//   io.configure(function(){
+//     io.set('transports', ['websocket']);
+//   });
+// }
 
 io.sockets.on('connection', function (socket) {
   
@@ -311,4 +321,7 @@ function getOpponent(token, socket) {
 
 // Start EasyRTC server
 var rtc = easyrtc.listen(app, io);
+
+server.listen(process.env.PORT || 3000);
+
 
