@@ -22,7 +22,7 @@ $(function (data) {
     $WS = $URL;
   } else if (ENV === 'production') {
     console.log('hello');
-    $URL = 'http://real-time-chess.herokuapp.com:'  ;
+    $URL = 'http://real-time-chess.herokuapp.com'  ;
     console.log($URL)
     $WS = $URL;
   }
