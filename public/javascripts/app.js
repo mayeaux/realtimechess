@@ -11,7 +11,7 @@ $(function (data) {
     $URL = 'http://localhost:' + 3000;
     $WS = $URL;
   } else if (ENV === 'production') {
-    $URL = 'http://real-time-chess:' + 3000;
+    $URL = 'https://real-time-chess:' + 3000;
     $WS = $URL;
   }
 

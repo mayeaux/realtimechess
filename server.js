@@ -107,6 +107,11 @@ winston.exitOnError = false;
  */
 var io = require('socket.io').listen(server, {log: false});
 
+  io.configure(function () {
+    io.set("transports", ["xhr-polling"]);
+    io.set("polling duration", 20);
+  });
+
 if (process.env.OPENSHIFT_NODEJS_IP) {
   io.configure(function(){
     io.set('transports', ['websocket']);
