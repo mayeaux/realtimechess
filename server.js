@@ -312,3 +312,5 @@ var rtc = easyrtc.listen(app, io);
 
 server.listen(process.env.PORT);
 
+console.log(process.env.PORT);
+
