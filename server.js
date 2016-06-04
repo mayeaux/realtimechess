@@ -21,7 +21,7 @@ $(function (data) {
     $URL = 'http://localhost:' + ${process.env.PORT};
     $WS = $URL;
   } else if (ENV === 'production') {
-    $URL = 'http://real-time-chess.herokuapp.com:' + ${process.env.PORT};
+    $URL = 'ws://real-time-chess.herokuapp.com:' + ${process.env.PORT};
     $WS = $URL;
   }
 
@@ -105,7 +105,7 @@ winston.exitOnError = false;
 /**
  * Sockets
  */
-var io = require('socket.io').listen(server, {log: false});
+var io = require('socket.io').listen(server, {log: true});
 
   io.configure(function () {
     io.set("transports", ["xhr-polling"]);
@@ -119,6 +119,8 @@ if (process.env.OPENSHIFT_NODEJS_IP) {
 }
 
 io.sockets.on('connection', function (socket) {
+
+  console.log(socket);
 
   socket.on('start', function (data) {
     var token;

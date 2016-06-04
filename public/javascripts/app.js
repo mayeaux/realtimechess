@@ -11,7 +11,7 @@ $(function (data) {
     $URL = 'http://localhost:' + 3000;
     $WS = $URL;
   } else if (ENV === 'production') {
-    $URL = 'https://real-time-chess:' + 3000;
+    $URL = 'http://real-time-chess.herokuapp.com:' + 3000;
     $WS = $URL;
   }
 
