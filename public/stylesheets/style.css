@@ -502,15 +502,13 @@ ul#chat {
 
 /* Chessboard */
 #board_moves_wrapper {
-  width: 100%;
-  max-width: 800px;
-  min-height: 600px;
-  margin: 0 auto; }
+  margin-left: 134px;
+}
 
 table#moves {
   overflow-x: hidden;
   overflow-y: auto;
-  width: 270px;
+  width: 168px;
   height: 518px;
   background: #e6e3e0;
   box-shadow: inset 0 -4px #dad7d2;
@@ -522,7 +520,7 @@ table#moves {
 
 #moves thead {
   font-family: 'Cherry Swash';
-  width: 270px;
+  width: 168px;
   height: 3em;
   line-height: 3em;
   font-size: 1.225rem;
@@ -536,10 +534,11 @@ table#moves {
   float: left; }
 
 #moves tbody tr {
-  width: 270px;
+  width: 164px;
   float: left; }
 
 #moves tbody tr td {
+  font-size: 12px;
   width: 105px;
   text-align: left;
   line-height: 20px;
@@ -740,4 +739,8 @@ span.promotion {
 .center-div{
   margin: 0 auto;
   text-align: center;
+}
+
+.play-chess-box{
+  margin: 31px 0;
 }

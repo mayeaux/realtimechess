@@ -22,7 +22,7 @@ $(function() {
       e.data.accept();
     } else if (e.which === 27) {
       hideOffer();
-      e.data.decline(); 
+      e.data.decline();
     }
   }
 
@@ -77,17 +77,17 @@ $(function() {
       }
       tdFrom.addClass('last-origin');
       tdTo.addClass('last-target');
-      
+
       var piece = tdFrom.find('a'); // piece being moved
       var moveSnd = $("#moveSnd")[0];
       unselectPiece(piece.parent());
-      
+
       if (tdTo.html() !== '') { //place captured piece next to the chessboard
         $('#captured-pieces')
           .find($chess.turn() === 'b' ? '.b' : '.w')
           .append('<li>' + tdTo.find('a').html() + '</li>');
       }
-      
+
       tdTo.html(piece);
 
       $piece = null;
@@ -97,7 +97,7 @@ $(function() {
         var enpassant = move.to.charAt(0) + move.from.charAt(1);
         $('td.' + enpassant.toUpperCase()).html('');
       }
-      
+
       //kingside castling
       var rook;
       if (move.flags === 'k'){
@@ -145,11 +145,11 @@ $(function() {
           square.html(promotion_b[option]);
         }
       }
-      
+
       if ($('#sounds').is(':checked')) {
         moveSnd.play();
       }
-      
+
       //feedback
       var fm = $('.feedback-move');
       var fs = $('.feedback-status');
@@ -323,7 +323,7 @@ $(function() {
 
   $socket.on('opponent-disconnected', function (data) {
     $('.resign').off().remove();
-    
+
 
     $('#sendMessage').off();
     $('#sendMessage').submit(function (e) {
@@ -354,10 +354,10 @@ $(function() {
     $('.feedback-status').text(message);
   });
 
-  $socket.on('full', function (data) {
-    alert("This game already has two players. You have to create a new one.");
-    window.location = '/';
-  });
+  // $socket.on('full', function (data) {
+  //   alert("This game already has two players. You have to create a new one.");
+  //   window.location = '/';
+  // });
 
   $socket.on('receive-message', function (data) {
     var chat = $('ul#chat');
@@ -385,7 +385,7 @@ $(function() {
     if (sec.toString().length === 1) {
       sec = '0' + sec;
     }
-    
+
     $('#clock li.' + color).text(min + ':' + sec);
   });
 

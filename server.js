@@ -107,7 +107,7 @@ winston.exitOnError = false;
 /**
  * Sockets
  */
-var io = require('socket.io').listen(server, {log: true});
+var io = require('socket.io').listen(server, {log: false});
 
   io.configure(function () {
     io.set("transports", ["xhr-polling"]);
@@ -121,9 +121,7 @@ if (process.env.OPENSHIFT_NODEJS_IP) {
 }
 
 io.sockets.on('connection', function (socket) {
-
-  console.log(socket);
-
+  
   socket.on('start', function (data) {
     var token;
     var b = new Buffer(Math.random() + new Date().getTime() + socket.id);

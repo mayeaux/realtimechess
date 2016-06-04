@@ -2,13 +2,13 @@ doctype 5
 html
   head
     - if (typeof(title) !== 'undefined')
-      title #{title} | Reti Chess
+      title #{title} | Real Time Chess
     - else
-      title Reti Chess
+      title Real Time Chess
     meta(charset='utf-8')
     meta(name='robots', content='index, follow')
     meta(itemprop='name=Reti Chess')
-    meta(name='description', content='Reti Chess is a lightweight real-time chess app built in Node.js with use of Express framework and Socket.IO')
+    //meta(name='description', content='Reti Chess is a lightweight real-time chess app built in Node.js with use of Express framework and Socket.IO')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     link(rel='shortcut icon', href='/images/logo.png')
     link(rel='stylesheet', href='/stylesheets/style.css')
@@ -40,8 +40,8 @@ html
         a#offer-accept.button(href='#') Accept
         a#offer-decline.button.button--red(href='#') Decline
 
-    #container_wrapper.clearfix
-      #container.clearfix
+    #container_wrapper.clearfix.center-div
+      #container.clearfix.center-div
         block content
 
 
