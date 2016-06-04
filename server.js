@@ -8,8 +8,6 @@ var express = require('express')
 
 var app = express();
 
-console.log(process.env);
-
 app.configure(function() {
   app.set('ipaddress', process.env.IP || '127.0.0.1');
   app.set('port', process.env.PORT || 3000);
@@ -55,9 +53,7 @@ app.get('/logs', function(req, res) {
   });
 });
 
-var server = http.createServer(app).listen(app.get('port'), app.get('ipaddress'), function() {
-  console.log("Express server listening on port " + app.get('port'));
-});
+var server = http.createServer(app);
 
 var games = {};
 var timer;
@@ -313,4 +309,6 @@ function getOpponent(token, socket) {
 
 // Start EasyRTC server
 var rtc = easyrtc.listen(app, io);
+
+server.listen(process.env.PORT);
 
