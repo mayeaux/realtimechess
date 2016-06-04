@@ -539,7 +539,7 @@ table#moves {
 
 #moves tbody tr td {
   font-size: 12px;
-  width: 105px;
+  width: 35px;
   text-align: left;
   line-height: 20px;
   margin: 0 15px;
@@ -707,6 +707,7 @@ span.promotion {
 
 #demoContainer {
     position:relative;
+    margin-top:109px;
 }
 #connectControls {
     float:right;
@@ -732,8 +733,8 @@ span.promotion {
     border:1px solid gray;
     float:right;
     position: absolute;
-    margin-left:797px;
-    margin-top:-564px;
+    margin-left:850px;
+    margin-top:-661px;
 }
 
 .center-div{
@@ -743,4 +744,13 @@ span.promotion {
 
 .play-chess-box{
   margin: 31px 0;
+}
+
+.playheader{
+  margin-left: 133px;
+}
+
+.playbutton{
+  margin-right:100px;
+  margin-bottom:7px;
 }

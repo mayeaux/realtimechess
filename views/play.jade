@@ -7,12 +7,13 @@ block head
     $increment = #{increment};
 
 block content
-  header.clearfix
-    ul#clock
-      li.white
-      li.black
+  header.clearfix.playheader
+    div.playheader
+      ul#clock
+        li.white
+        li.black
     span#game-type
-    a.button(href='/') New game
+    a.button.playbutton(href='/') New game!!
     a.button.button--red.resign Resign
     a.button.button--red.rematch Rematch
 
@@ -247,9 +248,9 @@ block content
           th Table of moves
       tbody
         tr
-    
+
     span.promotion
-      label(id='for_promotion') Promotion: 
+      label(id='for_promotion') Promotion:
         select(id='promotion')
           option(value='q', selected) Queen
           option(value='r') Rook
