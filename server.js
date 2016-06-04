@@ -8,6 +8,33 @@ var express = require('express')
 
 var app = express();
 
+var play = `var $URL, $socket;
+
+$(function (data) {
+
+  var ENV = ${process.env.NODE_ENV};
+  var $WS;
+
+  var data = 5000;
+
+  if (ENV === 'development') {
+    $URL = 'http://localhost:' + ${process.env.PORT};
+    $WS = $URL;
+  } else if (ENV === 'production') {
+    $URL = 'http://real-time-chess:' + ${process.env.PORT};
+    $WS = $URL;
+  }
+
+  $socket = io.connect($WS);
+});`
+
+fs.writeFile("./public/javascripts/app.js", play, function(err) {
+  if(err) {
+    return console.log(err);
+  }
+
+  console.log("The file was saved!");
+
 app.configure(function() {
   app.set('ipaddress', process.env.IP || '127.0.0.1');
   app.set('port', process.env.PORT || 3000);
@@ -318,3 +345,4 @@ server.listen(process.env.PORT);
 
 console.log(process.env.PORT);
 
+});

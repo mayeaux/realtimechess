@@ -1,40 +1,19 @@
 var $URL, $socket;
 
-$(function () {
+$(function (data) {
 
-  // var ENV = 'dev';
-  // var $WS;
-  //
-  // var data = 5000;
-  //
-  // if (ENV === 'dev') {
-  //   // $URL = 'https://real-time-chess.herokuapp.com:' + data;
-  //   $URL = 'http://localhost:' + data;
-  //   $WS = $URL;
-  // } else if (ENV === 'heroku') {
-  //   $URL = 'https://real-time-chess.herokuapp.com/';
-  //   $WS = 'https://real-time-chess.herokuapp.com:8000/';
-  // }
-  //
-  // $socket = io.connect($WS);
+  var ENV = development;
+  var $WS;
 
-  //
-  $.get("/port", function( data ) {
-    console.log(data);
-    //var ENV = 'openshift';
-    var ENV = 'dev';
-    var $WS;
+  var data = 5000;
 
-    if (ENV === 'dev') {
-      $URL = 'http://real-time-chess.herokuapp.com:' + data;
-      // $URL = 'https://localhost:' + data;
-      $WS = $URL;
-    } else if (ENV === 'heroku') {
-      $URL = 'https://real-time-chess.herokuapp.com/';
-      $WS = 'https://real-time-chess.herokuapp.com:8000/';
-    }
+  if (ENV === 'development') {
+    $URL = 'http://localhost:' + 3000;
+    $WS = $URL;
+  } else if (ENV === 'production') {
+    $URL = 'http://real-time-chess:' + 3000;
+    $WS = $URL;
+  }
 
-    $socket = io.connect($WS);
-  });
-
+  $socket = io.connect($WS);
 });

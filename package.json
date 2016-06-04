@@ -2,6 +2,7 @@
   "name": "retichess",
   "version": "0.2.1",
   "scripts": {
+    "preinstall": "node scripts/install.js",
     "start": "node server.js"
   },
   "dependencies": {
