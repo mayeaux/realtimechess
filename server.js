@@ -31,6 +31,10 @@ app.get('/', function(req, res) {
   res.render('index');
 });
 
+app.get('/port', function(req, res) {
+  res.send(process.env.PORT);
+});
+
 app.get('/about', function(req, res) {
   res.render('about');
 });
