@@ -80,26 +80,26 @@ html
       $token = '#{token}';
       $time = #{time};
       $increment = #{increment};
-    link(href='http://fonts.googleapis.com/css?family=Cherry+Swash|Open+Sans:400,600', rel='stylesheet', type='text/css')
+    link(href='https://fonts.googleapis.com/css?family=Cherry+Swash|Open+Sans:400,600', rel='stylesheet', type='text/css')
     //if IE
       script(src='http://html5shiv.googlecode.com/svn/trunk/html5.js')
   body(onload="connect();")
     #modal-mask
       p
-        strong Esc: 
+        strong Esc:
         |  OK
         br
-        strong Enter: 
+        strong Enter:
         |  OK
       #modal-window
         p#modal-message Message.
         a#modal-ok.button(href='#') OK
     #offer-mask
       p
-        strong Esc: 
+        strong Esc:
         |  Decline
         br
-        strong Enter: 
+        strong Enter:
         |  Accept
       #offer-window
         p#offer-message Offer.
@@ -348,9 +348,9 @@ html
                 th Table of moves
             tbody
               tr
-          
+
           span.promotion
-            label(id='for_promotion') Promotion: 
+            label(id='for_promotion') Promotion:
               select(id='promotion')
                 option(value='q', selected) Queen
                 option(value='r') Rook
@@ -364,23 +364,23 @@ html
         #demoContainer
           #connectControls
             #iam Not yet connected...
-            |                         
+            |
             br
-            |                         
+            |
             strong Connected users:
-            |                         
+            |
             #otherClients
-          |                     
+          |
           #videos
             div
               video#callerVideo(autoplay='autoplay')
             video#selfVideo.easyrtcMirror(autoplay='autoplay', muted='muted', volume='0')
-            |                         
+            |
 
         br(style='clear:both;')
-        |                 
+        |
         hr
-        
+
 
     script(type='text/javascript', src='/javascripts/jquery.js')
     script(type='text/javascript', src='/javascripts/jquery.stickyFooter.js')
