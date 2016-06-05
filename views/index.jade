@@ -2,28 +2,32 @@ extends layout
 
 block content
   h1.knight
-  h2 Reti Chess
-  p.margin-fifty.center Thrown together by the one they call Antoine the Swan
+  h2 Real Time Chess
+  p.center.play-chess-box Play chess with your friends with a built in video chat
 
   div#form
     form#create_form(action='')
       fieldset
-        label Minutes per side: 
+        label Minutes per side:
           input#minutes(type='number', value='30', min='1', max='50', required)
         label(style='padding-left: 2em;') Increment in seconds:
           input#seconds(type='number', value='0', min='0', max='50', required)
       input#game_link.game_link(type='text', readonly, value='Game link will be generated here.')
       button.button#play(type='submit') Play
-  
+
     p#waiting Generating game link.
-  
-  p.center Click the button play to create a game. 
-  p.center
-    a(href='/about', class='alpha') Read more about Reti Chess
+
+  a(href="https://www.facebook.com/profile.php?id=850090634")
+    p.center.alpha by Anthony Mayfield
+
+
+
+
+
+
 
 block scripts
   script(type='text/javascript', src='/javascripts/start.js')
 
     script(type='text/javascript').
       function forward(){ window.location = "/demos/";}
-  

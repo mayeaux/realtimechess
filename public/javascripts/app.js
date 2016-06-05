@@ -1,17 +1,21 @@
 var $URL, $socket;
-  
-$(function () {
-  //var ENV = 'openshift';
-  var ENV = 'dev';
+
+$(function (data) {
+
+  var ENV = 'development';
   var $WS;
 
-  if (ENV === 'dev') {
-    $URL = 'http://127.0.0.1:3000';
+  var data = 5000;
+
+  if (ENV === 'development') {
+    $URL = 'http://localhost:' + 3000;
     $WS = $URL;
-  } else if (ENV === 'heroku') {
-    $URL = 'http://real-time-chess.herokuapp.com/';
-    $WS = 'http://real-time-chess.herokuapp.com:8000/';
+  } else if (ENV === 'production') {
+    console.log('hello');
+    $URL = 'https://realtimechess.com'  ;
+    console.log($URL)
+    $WS = $URL;
   }
 
-  $socket = io.connect($WS);
+  $socket = io.connect();
 });

@@ -8,9 +8,38 @@ var express = require('express')
 
 var app = express();
 
+var play = `var $URL, $socket;
+
+$(function (data) {
+
+  var ENV = '${process.env.NODE_ENV}';
+  var $WS;
+
+  var data = 5000;
+
+  if (ENV === 'development') {
+    $URL = 'http://localhost:' + ${process.env.PORT};
+    $WS = $URL;
+  } else if (ENV === 'production') {
+    console.log('hello');
+    $URL = 'https://realtimechess.com'  ;
+    console.log($URL)
+    $WS = $URL;
+  }
+
+  $socket = io.connect();
+});`
+
+fs.writeFile("./public/javascripts/app.js", play, function(err) {
+  if(err) {
+    return console.log(err);
+  }
+
+  console.log("The file was saved!");
+
 app.configure(function() {
-  app.set('ipaddress', process.env.HEROKU_IP || '127.0.0.1');
-  app.set('port', process.env.HEROKU_IP || 3000);
+  app.set('ipaddress', process.env.IP || '127.0.0.1');
+  app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.use(express.favicon());
@@ -29,6 +58,10 @@ app.configure('development', function() {
 
 app.get('/', function(req, res) {
   res.render('index');
+});
+
+app.get('/port', function(req, res) {
+  res.send(process.env.PORT);
 });
 
 app.get('/about', function(req, res) {
@@ -53,14 +86,12 @@ app.get('/logs', function(req, res) {
   });
 });
 
-var server = http.createServer(app).listen(app.get('port'), app.get('ipaddress'), function() {
-  console.log("Express server listening on port " + app.get('port'));
-});
+var server = http.createServer(app);
 
 var games = {};
 var timer;
 
-/** 
+/**
  * Winston logger
  */
 winston.add(winston.transports.File, {
@@ -78,6 +109,11 @@ winston.exitOnError = false;
  */
 var io = require('socket.io').listen(server, {log: false});
 
+  io.configure(function () {
+    io.set("transports", ["xhr-polling"]);
+    io.set("polling duration", 20);
+  });
+
 if (process.env.OPENSHIFT_NODEJS_IP) {
   io.configure(function(){
     io.set('transports', ['websocket']);
@@ -85,7 +121,7 @@ if (process.env.OPENSHIFT_NODEJS_IP) {
 }
 
 io.sockets.on('connection', function (socket) {
-  
+
   socket.on('start', function (data) {
     var token;
     var b = new Buffer(Math.random() + new Date().getTime() + socket.id);
@@ -194,7 +230,7 @@ io.sockets.on('connection', function (socket) {
 
   socket.on('rematch-offer', function (data) {
     var opponent;
-    
+
     if (data.token in games) {
       opponent = getOpponent(data.token, socket);
       if (opponent) {
@@ -312,3 +348,8 @@ function getOpponent(token, socket) {
 // Start EasyRTC server
 var rtc = easyrtc.listen(app, io);
 
+server.listen(process.env.PORT);
+
+console.log("Listening on port" + process.env.PORT);
+
+});
